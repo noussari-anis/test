@@ -1,7 +1,7 @@
 version: "3.8"
 
 services:
-  mysqldb:
+  db:
     image: mysql:latest
     restart: unless-stopped
     environment:
@@ -10,19 +10,21 @@ services:
       - MYSQL_USERNAME="root"
       - MYSQL_DATABASE=mydb
     ports:
-      - 3307:3306
+      - 3305:3306
     networks:
       - mynetwork
   backend:
     image: devops
     depends_on:
-      - mysqldb
-    build: ./
+      - db
+    build:
+      context: ./
+      dockerfile: Dockerfile
     restart: on-failure
     ports:
-      - 8383:8383
+      - 8888:8888
     environment:
-      - spring.datasource.url=jdbc:mysql://mysqldb:3306/mydb?useUnicode=true&useJDBCCompliantTimezoneShift=true&createDatabaseIfNotExist=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+      - spring.datasource.url=jdbc:mysql://db:3306/mydb?useUnicode=true&useJDBCCompliantTimezoneShift=true&createDatabaseIfNotExist=true&useLegacyDatetimeCode=false&serverTimezone=UTC
       - spring.datasource.username = root
       - spring.datasource.password = ""
       - spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5InnoDBDialect
