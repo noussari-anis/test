@@ -109,7 +109,7 @@
             </plugin>
 
         </plugins>
-
+<finalName>test</finalName>
 
     </build>
 
