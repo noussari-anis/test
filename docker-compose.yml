@@ -10,7 +10,7 @@ services:
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
   backend:
-    image: yosrsahnoun/kaddem-docker
+    image: anis10/test
     restart: unless-stopped
     ports:
       - 8383:8383
