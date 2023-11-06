@@ -1,4 +1,4 @@
 FROM openjdk:8
 EXPOSE 8383
-ADD target/test.jar test.jar
-ENTRYPOINT ["java", "-jar","/test.jar"]
+ADD target/kaddem-0.0.1-SNAPSHOT.jar kaddem-0.0.1-SNAPSHOT.jar
+ENTRYPOINT ["java", "-jar","/kaddem-0.0.1-SNAPSHOT.jar"]
