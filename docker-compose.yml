@@ -3,17 +3,18 @@ version: "3.8"
 services:
   mysqldb:
     image: mysql:5.7
+    container_name: mysqldb
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: kaddemdb
     ports:
       - 3307:3306
-    volumes:
-      - db:/var/lib/mysql
+
 
   kaddem:
     image: anis10/test
+    container_name: kaddem
     depends_on:
       - mysqldb
     build: ./
@@ -27,5 +28,3 @@ services:
         "spring.datasource.password" : "root",
         "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQL5InnoDBDialect",
         "spring.jpa.hibernate.ddl-auto" : "update"}'
-    volumes:
-      - ./m2:/root/.m2
