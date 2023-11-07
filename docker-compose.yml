@@ -13,7 +13,7 @@ services:
 
 
   kaddem:
-    image: anis10/test
+    image: anis10/kaddem-0.0.1-snapshot
     container_name: kaddem
     depends_on:
       - mysqldb
